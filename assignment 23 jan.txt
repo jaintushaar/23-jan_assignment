@@ -1,0 +1,74 @@
+Answer -5 output
+Enter the two numbers :
+4
+2
+x / y = 2
+
+
+Answer-4
+When an exception is thrown, the program looks for an exception handler (catch block) that can handle the exception. If a matching catch
+ block is found, the program transfers control to that catch block, and the exception is considered handled. If no matching catch block 
+is found, the program will terminate, and this is known as an "unhandled exception".In C++, when an unhandled exception occurs, the program
+calls the terminate() function, which by default calls the abort() function, which in turn terminates the program abruptly. This will cause
+any destructors of objects with automatic storage duration that were not yet destructed to be called, any file buffers are flushed and any 
+resources are released.It is important to note that proper exception handling is crucial for the program to execute correctly and to ensure
+that the program can recover from exceptional events, and continue to execute.
+Example-
+
+Answer-3
+A try-catch block is used to handle exceptions that occur within the try block. The catch block is used to catch the exception and handle it. 
+The catch block is executed only when an exception is thrown within the try block, and it matches the type specified in the catch statement.
+A try-throw-catch block is similar to a try-catch block, but it also includes a throw statement. The throw statement is used to throw an exception
+explicitly, rather than waiting for an exception to occur naturally.The try-throw-catch block is used to handle exceptions that are thrown explicitly
+ by the programmer. In this case, the developer can throw an exception when a certain condition is met, and the catch block is used to handle the exception.
+In summary, a try-catch block is used to handle exceptions that occur naturally within the try block, while a try-throw-catch block is used to handle
+ exceptions that are thrown explicitly by the programmer.
+
+Answer-2
+In C++, you can re-throw an exception using the throw keyword without any argument.
+
+Here is an example of how you can re-throw an exception:
+
+Copy code
+try
+{
+// code that might throw an exception
+throw std::runtime_error("Some exception occurred");
+}
+catch (std::exception& e)
+{
+std::cout << "Caught exception: " << e.what() << std::endl;
+
+// perform some cleanup or logging
+
+// re-throw the exception
+throw;
+}
+In this example, an exception of type std::runtime_error is thrown within the try block.
+ The catch block catches the exception and prints the error message using the what() method. 
+After that, it performs some cleanup or logging, and then re-throws the exception using the 
+throw keyword without any argument. The catch block that follows the current one will catch the exception again and handle it.
+
+It is important to note that when an exception is re-thrown, the original exception's stack trace will be preserved, and the throw
+ location is updated to the new throw statement, which helps to track the exception's origin and how it was handled.
+
+Answer-1
+#include <iostream>
+using namespace std;
+
+class EXCEPTIONEXAMPLE : public std::exception {
+public:
+char * what () {
+return "Custom C++ Exception";
+}
+};
+
+int main() {
+try {
+throw EXCEPTIONEXAMPLE();
+} catch (EXCEPTIONEXAMPLE ee) {
+cout << "Caught EXCEPTIONEXAMPLE" << endl;
+cout << ee.what();
+}
+}
+
